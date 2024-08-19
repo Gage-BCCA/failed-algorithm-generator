@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+    href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css"
+    rel="stylesheet"
+  />
+    <link rel="stylesheet" href="/bundle.css" />
+    <title>Failed Algorithm</title>
+  </head>
+  <body>
+    <header>
+      <h1>
+        Failed Algorithm
+        <span class="deemphasis">A Personal Blog by Gage Schaffer</span>
+      </h1>
+    </header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/posts">Posts</a>
+      <a href="/about">About</a>
+    </nav>
+    <main><h1>Learning Rust the Hard Way, Part 1: Recreating the touch Linux Command</h1>
+<p>Let's jump right in.</p>
+<p>Rust is a memory-safe, general purpose programming language who's compiler is notoriously strict, especially
+for young programming grasshoppers like myself. The whole point is to make durable programs and catch mistakes before
+they're compiled. It's pretty nifty. My first forays into C were filled with leaks, so this part hits home.</p>
+<h2>The <code>touch</code> Command</h2>
+<p>The <code>touch</code> command simple creates a file or updates the &quot;Last Modified&quot; timestamp in the file's metadata. It's an easy command that gets a lot of use. In fact, I find myself missing it when using Windows systems, so let's recreate it.</p>
+<p>One important thing to note is that we are skipping the updating of metadata in this version of the program. So, if you <code>touch</code> a file that already exists, we're just going to crash the program. That functionality will come later.</p>
+<h2>Getting Arguments</h2>
+<p>The normal <code>touch</code> command takes one argument: the file to be created.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span></span>env<span class="token punctuation">;</span>
+
+<span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> args<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token class-name">String</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token namespace">env<span class="token punctuation">::</span></span><span class="token function">args</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> args_container_length <span class="token operator">=</span> args<span class="token punctuation">.</span><span class="token function">len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token keyword">i32</span><span class="token punctuation">;</span></code></pre>
+<p>First, we grab the arguments using the cool, built-in method for collecting arguments in a Vector. That's this line here:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> args<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token class-name">String</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token namespace">env<span class="token punctuation">::</span></span><span class="token function">args</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
+<p>Afterwards, we store the length. Typically, lengths are the datatype <code>usize</code>, and Rust has a strict type checking system,
+so we'll cast the length is a 32-bit signed int for input validation later.</p>
+<h2>Validating Input</h2>
+<p>We want to make sure that the user only puts in one argument. We can do this by comparing the length of <code>args</code> vector to our desired number of arguments.</p>
+<p>One thing to note is that one argument is always passed when running a program, which is the file path of the program itself. This means that, while we want one argument when using our new <code>touch</code> command, we will need to check for the <code>args</code> vector to have a length of 2: the file path that is always passed in and the file path that user provides.</p>
+<p>We'll accomplish this by using the Ordering library in the standard library.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span></span>env<span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>cmp<span class="token punctuation">::</span></span><span class="token class-name">Ordering</span><span class="token punctuation">;</span>
+
+    <span class="token operator">-</span>snip<span class="token operator">-</span>
+
+    <span class="token comment">// Validating input</span>
+    <span class="token keyword">match</span> <span class="token number">2</span><span class="token punctuation">.</span><span class="token function">cmp</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>args_container_length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Ordering</span><span class="token punctuation">::</span><span class="token class-name">Less</span> <span class="token operator">=></span> <span class="token macro property">panic!</span><span class="token punctuation">(</span><span class="token string">"Too many arguments. Correct Usage: touch test.txt"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token class-name">Ordering</span><span class="token punctuation">::</span><span class="token class-name">Greater</span> <span class="token operator">=></span> <span class="token macro property">panic!</span><span class="token punctuation">(</span><span class="token string">"Too Few Arguments. Correct Usage: touch test.txt"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token class-name">Ordering</span><span class="token punctuation">::</span><span class="token class-name">Equal</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>We do a match statement, comparing the results of comparing 2 against the <code>args</code> vector. If the number of arguments is too low or too great, we use the <code>panic!</code> macro to crash the program and give the user a simple error message.</p>
+<h2>Storing the Target File Path for Easier Use</h2>
+<p>Now, we have our input validated and ready to move on to the actual functionality.</p>
+<p>We'll store our target file path in a variable for easier use.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> target <span class="token operator">=</span> <span class="token operator">&amp;</span>args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+<p>We set the <code>target</code> variable to the value located at the 2nd position in the args vector, which should be our file path to be created.</p>
+<h2>Checking if the File Already Exists</h2>
+<p>Remember, we are skipping the functionality of <code>touch</code> that updates the file's &quot;Last Updated&quot; piece of metadata, so we need to check if the file already exists.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span></span>env<span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>path<span class="token punctuation">::</span></span><span class="token class-name">Path</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>cmp<span class="token punctuation">::</span></span><span class="token class-name">Ordering</span><span class="token punctuation">;</span>
+
+    <span class="token operator">-</span>snip<span class="token operator">-</span>
+
+<span class="token comment">// Checks if a file already exists.</span>
+    <span class="token keyword">if</span> <span class="token class-name">Path</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token macro property">panic!</span><span class="token punctuation">(</span><span class="token string">"File Already Exists."</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>We can use the built-in Path library to do this. It's simple and elegant. Create a new path using the <code>target</code> variable that we created earlier, and call the <code>exists()</code> function. This function returns a boolean, which, if it's true, we should <code>panic!</code> and crash the program.</p>
+<h2>Creating the File</h2>
+<p>This part is a continuation on the <code>if</code> statement we created above. If we find that the file does <em>not</em> exist, let's move onto creating the file.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span></span>env<span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>path<span class="token punctuation">::</span></span><span class="token class-name">Path</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>fs<span class="token punctuation">::</span></span><span class="token class-name">File</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>cmp<span class="token punctuation">::</span></span><span class="token class-name">Ordering</span><span class="token punctuation">;</span>
+
+    <span class="token operator">-</span>snip<span class="token operator">-</span>
+
+    <span class="token keyword">else</span><span class="token punctuation">{</span>
+            <span class="token keyword">match</span> <span class="token class-name">File</span><span class="token punctuation">::</span><span class="token function">create</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token class-name">Ok</span><span class="token punctuation">(</span>_file<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">return</span><span class="token punctuation">,</span>
+                <span class="token class-name">Err</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token macro property">panic!</span><span class="token punctuation">(</span><span class="token string">"Could not create file. Error: {e:?}"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span></code></pre>
+<p>We call the <code>create()</code> function from the File library, which returns a <code>Results</code> object that we need to deal with. We use a match statement to do this.</p>
+<p>If the <code>Result</code> object returns <code>Ok</code>, we just exit the program with <code>return</code>. If there was an error for some reason, call <code>panic!</code> and print out the error.</p>
+<h2>Wrapping Up!</h2>
+<p>That's it! We have created the most basic functionality of the <code>touch</code> command in Rust.</p>
+<h1>The Full Code</h1>
+<p>Here's the entire codebase. It's pretty short, all things considered.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span></span>env<span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>path<span class="token punctuation">::</span></span><span class="token class-name">Path</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>fs<span class="token punctuation">::</span></span><span class="token class-name">File</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>cmp<span class="token punctuation">::</span></span><span class="token class-name">Ordering</span><span class="token punctuation">;</span>
+
+<span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> args<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token class-name">String</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token namespace">env<span class="token punctuation">::</span></span><span class="token function">args</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> args_container_length <span class="token operator">=</span> args<span class="token punctuation">.</span><span class="token function">len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token keyword">i32</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Validating input</span>
+    <span class="token keyword">match</span> <span class="token number">2</span><span class="token punctuation">.</span><span class="token function">cmp</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>args_container_length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Ordering</span><span class="token punctuation">::</span><span class="token class-name">Less</span> <span class="token operator">=></span> <span class="token macro property">panic!</span><span class="token punctuation">(</span><span class="token string">"Too many arguments. Correct Usage: touch test.txt"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token class-name">Ordering</span><span class="token punctuation">::</span><span class="token class-name">Greater</span> <span class="token operator">=></span> <span class="token macro property">panic!</span><span class="token punctuation">(</span><span class="token string">"Too Few Arguments. Correct Usage: touch test.txt"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token class-name">Ordering</span><span class="token punctuation">::</span><span class="token class-name">Equal</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">let</span> target <span class="token operator">=</span> <span class="token operator">&amp;</span>args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Checks if a file already exists.</span>
+    <span class="token keyword">if</span> <span class="token class-name">Path</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"File Already Exists."</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span><span class="token punctuation">{</span>
+        <span class="token keyword">match</span> <span class="token class-name">File</span><span class="token punctuation">::</span><span class="token function">create</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Ok</span><span class="token punctuation">(</span>_file<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">return</span><span class="token punctuation">,</span>
+            <span class="token class-name">Err</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token macro property">panic!</span><span class="token punctuation">(</span><span class="token string">"Could not create file. Error: {e:?}"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+</main>
+  </body>
+</html>
