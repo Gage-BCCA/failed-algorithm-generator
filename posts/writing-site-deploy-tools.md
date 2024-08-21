@@ -6,5 +6,5 @@ blurb:
  Github Actions. My solution was two separate repos, with one controlling the 11ty
  project and the other hosting the static sites for Github Pages. As you can imagine,
  this had lead to some headaches. I addressed this using my new ADHD obsession, Rust.
- ---
+---
  # Toolcrafting
