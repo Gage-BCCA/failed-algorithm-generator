@@ -41,7 +41,7 @@ nav a:hover {
 }
 
 main {
-    width: 65%;
+    width: 50%;
     margin: auto;
     min-height: 100vh;
 }
@@ -54,9 +54,9 @@ footer {
     padding: 25px;
 }
 
-pre {
-    background-color: #bdc3c7;
-    padding: 25px;
+h2 {
+    margin-top: 25px;
+    font-weight: 400;
 }
 
 .deemphasis {

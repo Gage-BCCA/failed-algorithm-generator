@@ -9,8 +9,12 @@ tags: rust
 
 Let's jump right in.
 
-Rust is a memory-safe, general purpose programming language who's compiler is notoriously strict, especially 
-for young programming grasshoppers like myself. The whole point is to make durable programs and catch mistakes before
+Rust is 
+- memory-safe
+- general purpose 
+- notoriously strict (or safe, whatever you want to call it)
+
+The whole point is to make durable programs and catch mistakes before
 they're compiled. It's pretty nifty. My first forays into C were filled with leaks, so this part hits home.
 
 ## The ```touch``` Command
@@ -43,7 +47,11 @@ so we'll cast the length is a 32-bit signed int for input validation later.
 ## Validating Input
 We want to make sure that the user only puts in one argument. We can do this by comparing the length of `args` vector to our desired number of arguments.
 
-One thing to note is that one argument is always passed when running a program, which is the file path of the program itself. This means that, while we want one argument when using our new `touch` command, we will need to check for the `args` vector to have a length of 2: the file path that is always passed in and the file path that user provides.
+One thing to note is that one argument is always passed when running a program, which is the file path of the program itself.
+
+ This means that, while we want one argument when using our new `touch` command, we will need to check for the `args` vector to have a length of 2: 
+- the file path that is always passed in
+- the file path that user provides.
 
 We'll accomplish this by using the Ordering library in the standard library.
 
@@ -64,9 +72,7 @@ use std::cmp::Ordering;
 We do a match statement, comparing the results of comparing 2 against the `args` vector. If the number of arguments is too low or too great, we use the `panic!` macro to crash the program and give the user a simple error message.
 
 ## Storing the Target File Path for Easier Use
-Now, we have our input validated and ready to move on to the actual functionality.
-
-We'll store our target file path in a variable for easier use.
+Now, we have our input validated and ready to move on to the actual functionality. We'll store our target file path in a variable for easier use.
 
 ```rust
 let target = &args[1];
@@ -76,6 +82,8 @@ We set the `target` variable to the value located at the 2nd position in the arg
 
 ## Checking if the File Already Exists
 Remember, we are skipping the functionality of `touch` that updates the file's "Last Updated" piece of metadata, so we need to check if the file already exists.
+
+We can use the built-in Path library to do this. It's simple and elegant.
 
 ```rust
 use std::env;
@@ -90,7 +98,7 @@ use std::cmp::Ordering;
     }
 ```
 
-We can use the built-in Path library to do this. It's simple and elegant. Create a new path using the `target` variable that we created earlier, and call the `exists()` function. This function returns a boolean, which, if it's true, we should `panic!` and crash the program.
+Create a new path using the `target` variable that we created earlier, and call the `exists()` function. This function returns a boolean, which, if it's true, we should `panic!` and crash the program.
 
 ## Creating the File
 This part is a continuation on the `if` statement we created above. If we find that the file does *not* exist, let's move onto creating the file.
