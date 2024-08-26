@@ -1,11 +1,12 @@
 ---
 title: "Learning Rust the Hard Way: Part 1"
+subtitle: "Recreating the touch Linux Command"
 blurb: 
  I'm trying to break into the industry, and I think knowing the memory-safe programming language Rust will
- set me apart from my peers. Let's being this journey.
+ set me apart from my peers. Let's begin this journey.
 tags: rust
 ---
-# Learning Rust the Hard Way, Part 1: Recreating the touch Linux Command
+# Learning Rust the Hard Way, Part 1 - Recreating the touch Linux Command
 
 Let's jump right in.
 

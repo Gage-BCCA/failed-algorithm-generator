@@ -19,10 +19,15 @@ layout: layout.html
 {% for post in collections.post %}
 <div class="post-card">
   {% for tag in post.data.tags %} {% if tag == "post" %} {% else %}
-  <p>{{ tag }}</p>
+  <div class="tag-button">
+    <p>{{ tag }}</p>
+  </div>
   {% endif %} {% endfor %}
   <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
   <p>{{ post.data.blurb }}</p>
+  <a href="{{ post.url }}">
+    <button>Read More</button>
+  </a>
 </div>
 
 {% endfor %}

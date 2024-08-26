@@ -2,4 +2,16 @@
 layout : layout.html
 ---
 
-<h1>Under Construction!</h1>
+<h1>All Posts</h1>
+<h2>Rust</h2>
+{% for post in collections.rust %}
+<div class="post-card">
+    {% for tag in post.data.tags %} {% if tag == "post" %} {% else %}
+    <div class="tag-button">
+    <p>{{ tag }}</p>
+</div>
+    {% endif %} {% endfor %}
+    <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+    <p>{{ post.data.blurb }}</p>
+  </div>
+{% endfor %}
