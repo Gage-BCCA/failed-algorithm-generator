@@ -3,26 +3,21 @@ layout: layout.html
 ---
 
 <div class="welcome-blurb-container">
-  <h1>I'm Gage</h1>
-  <h2>I like coding, algorithms, and systems.</h2>
+  <h1>Welcome To My Home on the Internet!</h1>
+  <h2>I write about coding, algorithms, and systems.</h2>
   <p>
     I'm an IT security analyst that going through his journey to the software
     development world. In this personal blog, I'm writing about what I'm
     learning and working on.
   </p>
-  <a href="#"><button>See All Posts</button></a>
-  <a href="#"><button>About Me</button></a>
+  <a href="/posts"><button>See All Posts</button></a>
+  <a href="/portfolio"><button>Portfolio</button></a>
   <a href="#"><button>Contact</button></a>
 </div>
 
 <h1>Blog Posts</h1>
 {% for post in collections.post %}
 <div class="post-card">
-  {% for tag in post.data.tags %} {% if tag == "post" %} {% else %}
-  <div class="tag-button">
-    <p>{{ tag }}</p>
-  </div>
-  {% endif %} {% endfor %}
   <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
   <p>{{ post.data.blurb }}</p>
   <a href="{{ post.url }}">

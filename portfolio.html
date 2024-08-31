@@ -1,0 +1,183 @@
+---
+layout: layout.html
+---
+
+<div class="welcome-blurb-container">
+  <h1>Hi! I'm Gage.</h1>
+  <p>
+    I'm an IT security analyst that going through his journey to join the
+    software development world. I love working on systems and making them go
+    fast.
+  </p>
+</div>
+
+<section>
+  <h1>Skills</h1>
+  <p>These are a few of the things that I think I'm good at.</p>
+  <div class="skill-card-container">
+    <div class="skill-card">
+      <h2>Python</h2>
+      <p>
+        Python is one of my favorite languages. It's the one I started with,
+        too!
+      </p>
+    </div>
+    <div class="skill-card">
+      <h2>Rust</h2>
+      <p>
+        Rust is fast and safe, two of my favorite things. I try to write most of
+        my personal projects in Rust now.
+      </p>
+    </div>
+    <div class="skill-card">
+      <h2>HTML/CSS/Javascript</h2>
+      <p>
+        Webapps are fun to make! I mainly focus on the backend side of things,
+        but I like to design a nice website every now and again.
+      </p>
+    </div>
+  </div>
+  <div class="skill-card-container">
+    <div class="skill-card">
+      <h2>Blue Team Skills</h2>
+      <p>
+        I digest a lot of logs, investigate potential malware, and send a lot of
+        emails asking questions.
+      </p>
+    </div>
+    <div class="skill-card">
+      <h2>System Administration</h2>
+      <p>
+        I spent the first 5 years of my career managing all sorts of systems in
+        all kinds of environments.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h1>Projects</h1>
+  <p>Things that I've done.</p>
+  <div class="project-card-container">
+    <div class="project-card">
+      <img src="/img/computer.svg" class="project-card-icon" />
+      <h2 class="project-card-title">This Website!</h2>
+      <p>
+        I created this website with 11ty, a static site generator. It helps me
+        keep track of all my blog posts and tags.
+      </p>
+      <div class="project-details" id="project-details-1" style="display: none">
+        <div class="project-detail-item">
+          <h3 class="project-card-subtitle">
+            Hosted on Github Pages Using Two Repos
+          </h3>
+          <p>
+            One repo holds the actual 11ty generator, and the other hosts the
+            static HTML files that are being served.
+          </p>
+        </div>
+        <div class="project-detail-item">
+          <h3 class="project-card-subtitle">
+            Custom Deployment Tools Written in Rust
+          </h3>
+          <p>
+            I have created some custom deployment tools to make my headaches go
+            away, including a recursive file copier so that I can (almost)
+            instantly copy my static site files to the other local repo for
+            commiting and pushing.
+          </p>
+        </div>
+        <div class="project-detail-item">
+          <h3 class="project-card-subtitle">
+            Hand Written HTML/CSS/Javascript
+          </h3>
+          <p>
+            I wanted to learn the web stack and vanilla Javascript, so I have
+            not used any libraries in creation of this site! Well... that's not
+            totally true: I used the Prism code highlighting Javascript library
+            because it's awesome. But outside of that, it's totally vanilla and
+            handwritten.
+          </p>
+        </div>
+      </div>
+      <button id="1" onclick="showDetails(this)">See More</button>
+    </div>
+  </div>
+
+  <div class="project-card-container">
+    <div class="project-card">
+      <img src="/img/lock-icon.svg" class="project-card-icon" />
+      <h2 class="project-card-title">ZeroExfil</h2>
+
+      <p>Securely share links by protecting them with a password.</p>
+      <div class="project-details" id="project-details-2" style="display: none">
+        <div class="project-detail-item">
+          <h3 class="project-card-subtitle">Written with Flask</h3>
+          <p>
+            A simple web interface that allows the password protection of links.
+            Provide a link and password, get a shortened version back, and
+            share. It's simple!
+          </p>
+        </div>
+        <div class="project-detail-item">
+          <h3 class="project-card-subtitle">
+            Passwords are Hashed and Salted!
+          </h3>
+          <p>
+            In an effort to learn industry standards, all passwords are hashed
+            and salted when stored in the database. It's pretty cool!
+          </p>
+        </div>
+      </div>
+      <button id="2" onclick="showDetails(this)">See More</button>
+    </div>
+  </div>
+</section>
+<section class="outlined-section">
+  <div class="section-intro">
+    <h1>I'm a Writer for freeCodeCamp, too!</h1>
+    <p>Check out my favorite articles</p>
+  </div>
+  <div class="article-card-container-2">
+    <div class="article-card">
+      <h2>Error Handling in Python</h2>
+      <p>
+        In this article, I go over the basics of handling errors in Python with
+        try and except.
+      </p>
+      <a href="#">Read More</a>
+    </div>
+
+    <div class="article-card">
+      <h2>How to Use the DefaultDict</h2>
+      <p>
+        I randomly stumbled upon the DefaultDict one day and decided to write an
+        article about it.
+      </p>
+      <a href="#">Read More</a>
+    </div>
+  </div>
+  <p style="text-align: center; padding: 15px">
+    I love freeCodeCamp's mission and love contributing to other people's
+    learning! Most of the time, the articles I write there aren't super complex
+    -- but that's the point. The harder stuff that I learn and work through,
+    I'll write about here, on this site.
+  </p>
+</section>
+<section>
+  <div class="section-intro">
+    <h2>My Social Media</h2>
+  </div>
+  <div id="social-media-links">
+    <a href="https://github.com/Gage-BCCA"><h3>Github</h3></a>
+    <a href="https://www.linkedin.com/in/gage-schaffer-aa8624133/"><h3>LinkedIn</h3></a>
+  </div>
+</section>
+
+<section>
+  <div class="section-intro email-me">
+    <h2>Want to Get in Touch?</h2>
+    <h3>Email me here:</h3>
+    <p>gage.a.schaffer@gmail.com</p>
+  </div>
+</section>
