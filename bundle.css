@@ -61,15 +61,17 @@ h2 {
 
 button {
     padding: 5px;
-    background-color: #2c3e50;
+    background-color: #e74c3c;
     color: white;
     border-radius: 8px;
-    transition-duration: 200ms;
+    transition-duration: 400ms;
 }
 
 button:hover {
-    padding: 8px;
+    padding-right: 15px;
+    padding-left: 15px;
     transition-duration: 200ms;
+    background-color: #a5392c;
 }
 
 .deemphasis {
@@ -82,24 +84,22 @@ button:hover {
     margin-top: 25px;
 }
 .post-card {
-    background-color: #bdc3c7;
+    background-color: #2c3e50;
     padding: 25px;
-    border: 2px solid #7f8c8d;
+    border: 3px solid #34495e;
+    box-shadow: 15px 8px #e74c3c;
     border-radius: 8px;
     margin: 25px;
-}
-
-.tag-button {
-    background-color: #e74c3c;
     color: white;
-    width: fit-content;
-    height: fit-content;
-    border-radius: 8px;
-
 }
 
-.tag-button p {
-    padding: 5px;
+.post-card a{
+    text-decoration: none;
+    color: white;
+}
+
+.post-card h3 {
+    border-bottom: 3px solid #e74c3c;
 }
 
 .skill-card-container {
