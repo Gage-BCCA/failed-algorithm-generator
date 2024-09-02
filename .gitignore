@@ -24,3 +24,6 @@ package-lock.json
 # Ignore test files
 .cache
 test/stubs-layout-cache/_includes/*.js
+
+# Ignore littleBrother.js for now
+js/littleBrother.js
