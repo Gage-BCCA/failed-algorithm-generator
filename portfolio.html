@@ -1,6 +1,7 @@
 ---
 layout: layout.html
 ---
+
 <script src="{{ '/js/portfolio.js' | url }}" defer></script>
 <div class="welcome-blurb-container">
   <h1>Hi! I'm Gage.</h1>
@@ -9,8 +10,66 @@ layout: layout.html
     software development world. I love working on systems and making them go
     fast.
   </p>
+  <p id="viewcount"></p>
 </div>
-
+<section id="interests-section">
+  <h1>Interests</h1>
+  <div class="interests-container">
+    <div class="interests-tab-container">
+      <div class="interests-tab interests-tab-pair-1 interests-tab-active">
+        <h2>Programming</h2>
+      </div>
+      <div class="interests-tab interests-tab-pair-2">
+        <h2>Systems Administration and Design</h2>
+      </div>
+      <div class="interests-tab interests-tab-pair-3">
+        <h2>Making Things Go Fast</h2>
+      </div>
+    </div>
+  </div>
+  <div class="interests-content-container">
+    <div
+      class="interests-content interests-content-active interests-tab-pair-1"
+    >
+      <p>
+        I absolutely love programming.The idea that we can manipulate these
+        awesome, digital systems into doing tasks and playing games really
+        excites me.
+      </p>
+      <p>
+        My favorite languages (so far) are Python, Rust, and Javascript. I much
+        prefer the backend side of things, but doing some UI on my personal
+        projects isn't too bad.
+      </p>
+    </div>
+    <div class="interests-content interests-tab-pair-2">
+      <p>
+        I've been in IT for most of my working life, and have fallen in love
+        with well put-together systems.
+      </p>
+      <p>
+        A big career goal of mine is to be in a position where I can design,
+        implement, and maintain a large, complex system that offers lots of
+        opportunities for efficiency and security.
+      </p>
+    </div>
+    <div class="interests-content interests-tab-pair-3">
+      <p>
+        I remember creating my prime number generator. It took an upper bound
+        and returned a list of prime integers.
+      </p>
+      <p>
+        Then, I learned about the Sieve of Eratosthenes, which made my little
+        generator about a million times faster. Afterwards, I went from an
+        interpreted language to a compiled one. We were going fast. I was hooked.
+      </p>
+      <p>
+        Ever since then, I love refactoring my programs and making them
+        <em>faster</em> by finding more efficient algorithms and attacking bottlenecks.
+      </p>
+    </div>
+  </div>
+</section>
 <section>
   <h1>Skills</h1>
   <p>These are a few of the things that I think I'm good at.</p>
@@ -170,7 +229,9 @@ layout: layout.html
   </div>
   <div id="social-media-links">
     <a href="https://github.com/Gage-BCCA"><h3>Github</h3></a>
-    <a href="https://www.linkedin.com/in/gage-schaffer-aa8624133/"><h3>LinkedIn</h3></a>
+    <a href="https://www.linkedin.com/in/gage-schaffer-aa8624133/"
+      ><h3>LinkedIn</h3></a
+    >
   </div>
 </section>
 

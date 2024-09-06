@@ -7,13 +7,19 @@ blurb:
 tags: 
     - javascript
     - site analytics
+published: 2024-08-30
 ---
-# Writing Custom Site Analytics: Part 1 - Getting Information from the Client
-I want to record how many visitors I get on my site. I'll give you a hint: it's not many. However, I would like a general number.
+# {{ title }}
+{{ published | date: "%a, %b %d, %Y"}}
+<div class="article-intro">
+<p>{{ blurb }}</p>
+</div>
 
-This kind of project also helps me practice my system design a little bit, because there's a unique challenge: How can I call an API using Javascript while keeping that API secure? I don't want bad actors enumerating my API and potentially getting access to my data.
+This kind of project also helps me practice my system design a little bit, because there's a unique challenge: 
 
-Let's dive in.
+>How can I call an API using Javascript while keeping that API secure? 
+
+I don't want bad actors enumerating my API and potentially getting access to my data. Let's dive in.
 
 ## Information Gathering
 One *very* important part of this project is that the information has to be anonymous. No IP addresses, no hardware information, no geolocation, etc. So what can we gather?
