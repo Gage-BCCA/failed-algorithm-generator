@@ -2,78 +2,25 @@
 layout: layout.html
 ---
 
-<script src="{{ '/js/portfolio.js' | url }}" defer></script>
+<script src="{{ '/static/js/portfolio.js' | url }}" defer></script>
+<div>
+  <img src="{{ '/static/img/placehold.svg' | url }}" id="selfie">
+</div>
+
 <div class="welcome-blurb-container">
-  <h1>Hi! I'm Gage.</h1>
+  <h1>Hi! I'm Gage. </h1>
   <p>
     I'm an IT security analyst that going through his journey to join the
     software development world. I love working on systems and making them go
     fast.
   </p>
-  <p id="viewcount"></p>
-</div>
+
 <section id="interests-section">
-  <h1>Interests</h1>
-  <div class="interests-container">
-    <div class="interests-tab-container">
-      <div class="interests-tab interests-tab-pair-1 interests-tab-active">
-        <h2>Programming</h2>
-      </div>
-      <div class="interests-tab interests-tab-pair-2">
-        <h2>Systems Administration and Design</h2>
-      </div>
-      <div class="interests-tab interests-tab-pair-3">
-        <h2>Making Things Go Fast</h2>
-      </div>
-    </div>
-  </div>
-  <div class="interests-content-container">
-    <div
-      class="interests-content interests-content-active interests-tab-pair-1"
-    >
-      <p>
-        I absolutely love programming.The idea that we can manipulate these
-        awesome, digital systems into doing tasks and playing games really
-        excites me.
-      </p>
-      <p>
-        My favorite languages (so far) are Python, Rust, and Javascript. I much
-        prefer the backend side of things, but doing some UI on my personal
-        projects isn't too bad.
-      </p>
-    </div>
-    <div class="interests-content interests-tab-pair-2">
-      <p>
-        I've been in IT for most of my working life, and have fallen in love
-        with well put-together systems.
-      </p>
-      <p>
-        A big career goal of mine is to be in a position where I can design,
-        implement, and maintain a large, complex system that offers lots of
-        opportunities for efficiency and security.
-      </p>
-    </div>
-    <div class="interests-content interests-tab-pair-3">
-      <p>
-        I remember creating my prime number generator. It took an upper bound
-        and returned a list of prime integers.
-      </p>
-      <p>
-        Then, I learned about the Sieve of Eratosthenes, which made my little
-        generator about a million times faster. Afterwards, I went from an
-        interpreted language to a compiled one. We were going fast. I was hooked.
-      </p>
-      <p>
-        Ever since then, I love refactoring my programs and making them
-        <em>faster</em> by finding more efficient algorithms and attacking bottlenecks.
-      </p>
-    </div>
-  </div>
 </section>
 <section>
   <h1>Skills</h1>
   <p>These are a few of the things that I think I'm good at.</p>
-  <div class="skill-card-container">
+  <div class="flex-container">
     <div class="skill-card">
       <h2>Python</h2>
       <p>
@@ -82,10 +29,10 @@ layout: layout.html
       </p>
     </div>
     <div class="skill-card">
-      <h2>Rust</h2>
+      <h2>Automation</h2>
       <p>
-        Rust is fast and safe, two of my favorite things. I try to write most of
-        my personal projects in Rust now.
+        I have been scripting and automating for most of my career, and I absolutely love 
+        making the computer do my bidding.
       </p>
     </div>
     <div class="skill-card">
@@ -96,7 +43,7 @@ layout: layout.html
       </p>
     </div>
   </div>
-  <div class="skill-card-container">
+  <div class="flex-container">
     <div class="skill-card">
       <h2>Blue Team Skills</h2>
       <p>
@@ -119,7 +66,7 @@ layout: layout.html
   <p>Things that I've done.</p>
   <div class="project-card-container">
     <div class="project-card">
-      <img src="/img/computer.svg" class="project-card-icon" />
+      <img src="/static/img/computer.svg" class="project-card-icon" />
       <h2 class="project-card-title">This Website!</h2>
       <p>
         I created this website with 11ty, a static site generator. It helps me
@@ -134,6 +81,11 @@ layout: layout.html
             One repo holds the actual 11ty generator, and the other hosts the
             static HTML files that are being served.
           </p>
+          <p>
+            I found it easier to manage both repos rather than 
+            serving from the site folder in Github pages. Plus,
+            double the automation opportunities!
+          </p>
         </div>
         <div class="project-detail-item">
           <h3 class="project-card-subtitle">
@@ -144,6 +96,9 @@ layout: layout.html
             away, including a recursive file copier so that I can (almost)
             instantly copy my static site files to the other local repo for
             commiting and pushing.
+          </p>
+          <p>
+            Is it over the top? Yep. Is it cool? Also yep.
           </p>
         </div>
         <div class="project-detail-item">
@@ -165,7 +120,7 @@ layout: layout.html
 
   <div class="project-card-container">
     <div class="project-card">
-      <img src="/img/lock-icon.svg" class="project-card-icon" />
+      <img src="/static/img/lock-icon.svg" class="project-card-icon" />
       <h2 class="project-card-title">ZeroExfil</h2>
 
       <p>Securely share links by protecting them with a password.</p>
@@ -197,7 +152,7 @@ layout: layout.html
     <h1>I'm a Writer for freeCodeCamp, too!</h1>
     <p>Check out my favorite articles</p>
   </div>
-  <div class="article-card-container-2">
+  <div class="flex-container">
     <div class="article-card">
       <h2>Error Handling in Python</h2>
       <p>
@@ -236,7 +191,7 @@ layout: layout.html
 </section>
 
 <section>
-  <div class="section-intro email-me">
+  <div class="section-intro outlined-section">
     <h2>Want to Get in Touch?</h2>
     <h3>Email me here:</h3>
     <p>gage.a.schaffer@gmail.com</p>

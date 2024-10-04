@@ -13,8 +13,8 @@
     href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css"
     rel="stylesheet"
   />
-    <link rel="stylesheet" href="{{ '/bundle.css' | url }}" />
-    <script src="{{ '/js/bigBrother.js' | url }}" defer></script>
+    <link rel="stylesheet" href="{{ '/static/bundle.css' | url }}" />
+    <script src="{{ '/static/js/littleBrother.js' | url }}" defer></script>
     <title>Failed Algorithm</title>
   </head>
   <body>
@@ -27,11 +27,9 @@
     <nav>
       <a href="/">Home</a>
       <a href="/posts">Posts</a>
-      <a href="/tools">Tools</a>
-      <a href="/projects">Projects</a>
       <a href="/portfolio">Portfolio</a>
     </nav>
-    <main class="post-layout">{{ content }}</main>
+    <main>{{ content }}</main>
 
     <footer>
       <p>A personal blog by Gage Schaffer</p>
