@@ -44,3 +44,23 @@ function showDetails(elem) {
     elem.textContent = "Show More";
   }
 }
+
+const aboutMeTabSelectors = document.getElementsByClassName("about-me-list")[0].children;
+const aboutMeOutputs = document.getElementsByClassName("about-me-output-content");
+for (let element of aboutMeTabSelectors){
+  element.addEventListener("click", function(e) {
+
+    for (let box of aboutMeOutputs){
+      box.classList.add("hidden");
+    } 
+
+    let target = document.getElementById(this.dataset.outputId);
+    target.classList.remove("hidden");
+
+    for (let selector of aboutMeTabSelectors){
+      selector.classList.remove("selected");
+    }
+    
+    this.classList.add("selected");
+  })
+}

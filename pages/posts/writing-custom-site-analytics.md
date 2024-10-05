@@ -21,12 +21,12 @@ This kind of project also helps me practice my system design a little bit, becau
 
 I don't want bad actors enumerating my API and potentially getting access to my data. Let's dive in.
 
-## Information Gathering
+## \# Information Gathering
 One *very* important part of this project is that the information has to be anonymous. No IP addresses, no hardware information, no geolocation, etc. So what can we gather?
 
 Well, for starters, we can gather that a page view did, in fact, take place. Let's start there.
 
-### Setting up the Event Listener
+### \#\# Setting up the Event Listener
 We'll need to set up an event listener and detect when the page loads. After the page loads, we'll wait just a few seconds to make sure the site visit was actually done by a human.
 
 ```javascript
@@ -45,7 +45,7 @@ First, we:
 - We write a quick arrow function that sets a timer
 - Once the timer expires, call our `recordView` function
 
-## Recording the View
+## \# Recording the View
 To properly handle the view and the associated data we'll collect later, I'm going to stuff all this information into a simple class.
 
 ```javascript
@@ -76,7 +76,7 @@ function recordView () {
 
 It's that simple. After our timer from above elapses, call this function, who creates the View object.
 
-## Gathering More Information
+## \# Gathering More Information
 I want this information to be anonymous, but I still want some more basic information. Let's also gather:
 - Operating System
 - What page the view is being recorded on
@@ -85,7 +85,7 @@ I want this information to be anonymous, but I still want some more basic inform
 
 So far, we've had it really easy: just construct a new object and get it ready to send off the server so that a "view" is recorded. Let's take it a step further.
 
-### Gathering the OS
+### \#\# Gathering the OS
 I did some local testing and had mixed results using some of the web APIs available in vanilla Javascript, so I came up with this:
 
 ```javascript
@@ -157,7 +157,7 @@ function recordView () {
 
 ```
 
-### Gathering URL Information
+### \#\# Gathering URL Information
 This part is super easy, but super important to accurately track page views. Since we already constructed our View object earlier, and I don't have to do much extra work here, I'm going to add and directly set some new properties on my View class.
 
 ```javascript
@@ -211,7 +211,7 @@ function recordView () {
 
 That's it! We now have some basic stats that are indeed anonymous.
 
-## That's All For Now
+## \# That's All For Now
 We now have some decent information that we can record in a datastore. That's all we'll do for now, as we'll need to actually start designing our system next, and recruit some help from our friendly cloud compute providers.
 
 # A Note for the Snoopy Among My Dear Readers

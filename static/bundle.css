@@ -168,6 +168,57 @@ button:hover {
   border-radius: 8px;
 }
 
+#about-me-section{
+  border: 1px solid #e74c3c;
+  border-radius: 8px;
+  padding: 15px;
+
+}
+.about-me-selector-container {
+  flex: 1 1 25%;
+  align-content: center;
+  margin: auto;
+  min-height: 35vh;
+}
+
+.about-me-selector-container > ul {
+  list-style-type: none;
+  text-align: left;
+  padding-inline-start: 0px;
+ 
+}
+
+.about-me-selector-container > ul > li {
+  padding: 15px;
+  margin: 10px;
+  background-color: #34495e;
+  color: white;
+  border-radius: 8px;
+  transition-duration: 100ms;
+ 
+}
+
+.about-me-selector-container > ul > li.selected {
+  background-color: #e74c3c
+}
+
+.about-me-selector-container > ul > li:hover {
+  background-color: #f85240;
+}
+
+.about-me-output{
+  flex: 1 1 75%;
+  align-content: center;
+}
+
+.about-me-output-content {
+  text-align: justify;
+  padding: 25px;
+}
+.hidden {
+  display: none;
+}
+
 .interests-tab {
   flex: 1 1 30%;
   margin: 10px;
@@ -214,15 +265,20 @@ button:hover {
   padding: 25px;
   border-radius: 8px;
   margin: 25px;
+  text-align: left;
 }
 .project-card-title {
   border-bottom: 2px solid #e74c3c;
   padding: 10px;
 }
+
 .project-card-subtitle {
-  border-left: 5px solid #e74c3c;
+  margin-top: 50px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
   padding: 10px;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
+
 }
 
 .project-card-icon {
@@ -338,5 +394,9 @@ button:hover {
 
   .flex-container{
     display: block;
+  }
+
+  .about-me-selector-container {
+    min-height: 0vh;
   }
 }
