@@ -168,6 +168,11 @@ button:hover {
   border-radius: 8px;
 }
 
+#cursor {
+  font-size: 30px;
+  margin: -10px;
+}
+
 #about-me-section{
   border: 1px solid #e74c3c;
   border-radius: 8px;
@@ -267,6 +272,18 @@ button:hover {
   margin: 25px;
   text-align: left;
 }
+
+.project-header {
+  display: flex;
+}
+
+.project-header-icon {
+  flex: 1;
+  align-content: center;
+}
+ .project-header-details {
+  flex: 1 1 75%;
+ }
 .project-card-title {
   border-bottom: 2px solid #e74c3c;
   padding: 10px;
@@ -341,7 +358,12 @@ button:hover {
   margin-bottom: 75px;
 }
 
-
+#selfie {
+  width: 20%;
+  height: 15%;
+  border-radius: 10%;
+  box-shadow: 0 4px 8px 0 #a5392c;
+}
 @media (width <= 1280px) {
   body {
     max-width: 100vw;

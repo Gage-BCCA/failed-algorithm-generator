@@ -60,7 +60,20 @@ for (let element of aboutMeTabSelectors){
     for (let selector of aboutMeTabSelectors){
       selector.classList.remove("selected");
     }
-    
+
     this.classList.add("selected");
   })
 }
+
+let cursor = true;
+let speed = 350;
+
+setInterval(() => {
+   if(cursor) {
+     document.getElementById('cursor').style.opacity = 0;
+     cursor = false;
+   }else {
+     document.getElementById('cursor').style.opacity = 1;
+     cursor = true;
+   }
+}, speed);
